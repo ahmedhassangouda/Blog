@@ -19,6 +19,7 @@
                                 class="form-control" 
                                 placeholder="Write Category Name"
                                 value="{{$category->name}}"
+                                required
                             >        
                         </div>
                         @error('name')

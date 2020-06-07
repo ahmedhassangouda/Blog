@@ -17,6 +17,7 @@
                                 name="name" 
                                 class="form-control" 
                                 placeholder="Write Category Name"
+                                required
                             >        
                         </div>
                         @error('name')

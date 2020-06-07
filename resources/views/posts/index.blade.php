@@ -9,6 +9,13 @@
                 </div>
 
                 <div class="card-body">
+                  @if(Session::has('success'))
+                  <div class="row justify-content-center">
+                    <div class="col-md-8">                    
+                      <div class="alert alert-success text-center">{{Session::get('success')}}</div>
+                    </div>
+                  </div>
+                  @endif
                     <table class="table table-hover">
                         <thead class="thead-light">
                           <tr>
