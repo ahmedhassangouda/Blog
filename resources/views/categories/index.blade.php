@@ -15,7 +15,7 @@
                     </div>
                   </div>
                   @endif
-                    <table class="table table-hover">
+                    <table class="table table-hover text-center">
                         <thead class="thead-light">
                           <tr>
                             <th scope="col">ID</th>

@@ -57,19 +57,7 @@
                             <div class="alert alert-danger text-center">{{$message}}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label>Post Image: </label>
-                            <input 
-                            type="file" 
-                            name="image" 
-                            class="form-control-file" 
-                            value='{{$post->image}}'
-                            required
-                            >
-                            @error('image')
-                            <div class="alert alert-danger text-center">{{$message}}</div>
-                            @enderror
-                        </div>
+                        <img src="{{asset('storage/'.$post->image)}}" class="img-fluid my-3" alt="{{$post->title}}" style="width:100%">
                         <div class="form-group">
                             <input 
                             type="submit" 

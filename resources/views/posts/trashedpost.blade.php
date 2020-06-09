@@ -4,12 +4,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Posts
-                    <div class="float-right">
-                      <a class="btn btn-sm btn-success " href="{{Route('posts.create')}}"><i class="fa fa-plus"></i> Add Post</a> 
-                      <a class="btn btn-sm btn-danger " href="{{Route('posts.trashed')}}"><i class="fa fa-trash"></i> Trashed Posts</a>
-                    </div>
-                    
+                    Trashed Posts
                 </div>
 
                 <div class="card-body">
@@ -20,7 +15,8 @@
                     </div>
                   </div>
                   @endif
-                    <table class="table table-hover text-center">
+                    @if ( $posts->count() > 0)
+                      <table class="table table-hover text-center">
                         <thead class="thead-light">
                           <tr>
                             <th scope="col">Title</th>
@@ -28,7 +24,7 @@
                             <th scope="col">Controls</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody>                          
                           @foreach ($posts as $post)
                             <tr>
                               <td>{{$post->title}}</td>
@@ -37,15 +33,17 @@
                                 <form action="{{Route('posts.destroy' , $post->id)}}" method="post">
                                   @csrf
                                   @method('DELETE')
-                                  <a href="{{Route('posts.edit' , $post->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Edit</a>
-                                  <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Trash</button>                                
+                                  <a href="{{Route('posts.restor' , $post->id)}}" class="btn btn-sm btn-success"><i class="fa fa-undo"></i> Restore</a>
+                                  <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Delete</button>                                
                                 </form>
                               </td>
-                            </tr>
+                            </tr>                            
                           @endforeach
-
                         </tbody>
                       </table>
+                    @else
+                      <div class="alert alert-danger">No Trashed Posts.</div>
+                    @endif
                 </div>
             </div>
         </div>
