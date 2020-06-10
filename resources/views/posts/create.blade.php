@@ -32,6 +32,29 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label>Post Category: </label>
+                            <select name="category_id" class="form-control" placeholder="Select Post Category">
+                                <option>------</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select> 
+                            @error('category_id')
+                            <div class="alert alert-danger text-center">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Post Category: </label>
+                            <select name="tags[]" class="form-control" placeholder="Select Post Tags" multiple>
+                                @foreach($tags as $tag)
+                                    <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                @endforeach
+                            </select> 
+                            @error('tags')
+                            <div class="alert alert-danger text-center">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label>Post Image: </label>
                             <input type="file" name="image" class="form-control-file">
                             @error('image')

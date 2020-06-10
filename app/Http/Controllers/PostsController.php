@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
+use App\Models\Tag;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +31,9 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('posts.create' , compact(['categories' , 'tags']));
     }
 
     /**
@@ -40,12 +44,16 @@ class PostsController extends Controller
      */
     public function store(PostRequest $request)
     {
-        Post::create([
+        $post = Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
+            'category_id' => $request->category_id,
             'image' => $request->image->store('images','public')
         ]);
+
+        $post->tags()->attach($request->tags);
+
         
         return redirect(Route('posts.index'))->with([
                                                         'success' => 'Post Created Successfuly'
@@ -71,7 +79,9 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit' , compact('post'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('posts.edit' , compact(['post' , 'categories' , 'tags']));
     }
 
     /**
@@ -86,8 +96,11 @@ class PostsController extends Controller
         $post->update([
             'title' => $request->title,
             'description' => $request->description,
-            'content' => $request->content
+            'content' => $request->content,
+            'category_id' => $request->category_id,
         ]);
+
+        $post->tags()->sync($request->tags);
         
         return redirect(Route('posts.index'))->with([
                                                         'success' => 'Post Updated Successfuly'

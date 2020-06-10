@@ -94,6 +94,9 @@
                             <li class="list-group-item">
                                 <a href="{{Route('posts.index')}}">Posts</a>
                             </li>
+                            <li class="list-group-item">
+                                <a href="{{Route('tags.index')}}">Tags</a>
+                            </li>
                         </ul>
                     </div>
                         @yield('content')

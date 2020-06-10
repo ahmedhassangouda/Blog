@@ -10,7 +10,22 @@ class Post extends Model
     use SoftDeletes;
     
     protected $fillable = [
-        'title','description','content','image',
+        'title','description','content','image','category_id','tag_id'
     ];
     
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag');
+    }
+
+    public function hasTag($tagid)
+    {
+
+        return in_array($tagid , $this->tags->pluck('id')->toArray());
+    }
 }
