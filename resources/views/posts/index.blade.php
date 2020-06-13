@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('sidebar')
+    @include('layouts.admin-side-bar')
+@endsection
 @section('content')
         <div class="col-md-8">
             <div class="card">
@@ -7,7 +9,10 @@
                     Posts
                     <div class="float-right">
                       <a class="btn btn-sm btn-success " href="{{Route('posts.create')}}"><i class="fa fa-plus"></i> Add Post</a> 
+                      <a class="btn btn-sm btn-warning  " href="{{Route('posts.create')}}"><i class="fa fa-clock-o"></i> Pending Post</a>                     
+                      @if (auth()->user()->isAdmin())
                       <a class="btn btn-sm btn-danger " href="{{Route('posts.trashed')}}"><i class="fa fa-trash"></i> Trashed Posts</a>
+                      @endif
                     </div>
                     
                 </div>

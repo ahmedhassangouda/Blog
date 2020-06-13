@@ -17,10 +17,25 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function () {
 
-Route::resource('/categories', 'CategoriesController');
-Route::resource('/posts', 'PostsController');
-Route::get('/trashed-posts', 'PostsController@trashedpost')->name('posts.trashed');
-Route::get('/posts-restore/{id}','PostsController@postrestore')->name('posts.restor');
-Route::resource('/tags', 'TagsController');
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::resource('/categories', 'CategoriesController');
+
+    Route::resource('/posts', 'PostsController');
+    Route::get('/trashed-posts', 'PostsController@trashedpost')->name('posts.trashed');
+    Route::get('/posts-restore/{id}','PostsController@postrestore')->name('posts.restor');
+
+    Route::resource('/tags', 'TagsController');
+
+    Route::get('/users','UsersController@index')->name('user.index')->middleware('admin');
+    Route::post('/user-change-role/{user}','UsersController@changerole')->name('user.change-role')->middleware('admin');
+    
+    Route::get('/user-profile-/{user}','UsersController@profile')->name('user.profile');
+    Route::get('/edit-profile/{user}','ProfileController@edit')->name('profile.edit');
+    Route::post('/update-profile-/{profile}','ProfileController@update')->name('profile.update');
+
+
+});
+

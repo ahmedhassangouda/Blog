@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('sidebar')
+    @include('layouts.admin-side-bar')
+@endsection
 @section('content')
         <div class="col-md-8">
             <div class="card">

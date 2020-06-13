@@ -16,8 +16,34 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role','gander'
     ];
+    
+    public function profile()
+    {
+        return $this->hasOne('App\Models\Profile');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role == 'Admin';
+    }
+
+    public function isModerator()
+    {
+        return $this->role == 'Moderator';
+    }
+    
+    public function getAvatar($gander)
+    {
+        if($gander == 'Male'){
+            
+            return  "https://image.flaticon.com/icons/svg/145/145843.svg";
+        }else{
+            return  "https://image.flaticon.com/icons/svg/145/145850.svg";
+        }
+
+    }
 
     /**
      * The attributes that should be hidden for arrays.

@@ -38,6 +38,16 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="gander" class="col-md-4 col-form-label text-md-right">Gander</label>
+                            <div class="col-md-6">                                
+                                <select name="gander" required class="form-control">
+                                    <option></option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
