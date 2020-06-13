@@ -24,17 +24,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/categories', 'CategoriesController');
 
     Route::resource('/posts', 'PostsController');
-    Route::get('/trashed-posts', 'PostsController@trashedpost')->name('posts.trashed');
-    Route::get('/posts-restore/{id}','PostsController@postrestore')->name('posts.restor');
+    Route::get('/trashedposts', 'PostsController@trashedpost')->name('posts.trashed');
+    Route::get('/posts/restore/{id}','PostsController@postrestore')->name('posts.restor');
 
     Route::resource('/tags', 'TagsController');
 
     Route::get('/users','UsersController@index')->name('user.index')->middleware('admin');
-    Route::post('/user-change-role/{user}','UsersController@changerole')->name('user.change-role')->middleware('admin');
+    Route::post('/users/role/{user}','UsersController@changerole')->name('user.change-role')->middleware('admin');
     
-    Route::get('/user-profile-/{user}','UsersController@profile')->name('user.profile');
-    Route::get('/edit-profile/{user}','ProfileController@edit')->name('profile.edit');
-    Route::post('/update-profile-/{profile}','ProfileController@update')->name('profile.update');
+    Route::get('/profile/{user}','ProfileController@getprofile')->name('user.profile');
+    Route::get('/profile/edit/{user}','ProfileController@edit')->name('profile.edit');
+    Route::post('/profile/update/{profile}','ProfileController@update')->name('profile.update');
 
 
 });

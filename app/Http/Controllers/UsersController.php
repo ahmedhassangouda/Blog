@@ -19,9 +19,4 @@ class UsersController extends Controller
         $user->save();
         return redirect(Route('user.index'));
     }
-
-    public function profile(User $user)
-    {
-        return view('users.profile' , compact('user'));
-    }
 }

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -49,6 +50,7 @@ class PostsController extends Controller
             'description' => $request->description,
             'content' => $request->content,
             'category_id' => $request->category_id,
+            'user_id' => Auth::id(),
             'image' => $request->image->store('images','public')
         ]);
 

@@ -1,8 +1,8 @@
 
 @section('sidebar')
     @auth
-        <div class="col-md-4">
-            <ul class="list-group">
+        <div class="col-md-4 ">
+            <ul class="list-group sticky-top">
                 <li class="list-group-item list-group-item-dark">
                     Settings
                 </li>

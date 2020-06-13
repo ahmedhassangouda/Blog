@@ -37312,3 +37312,6 @@ module.exports = __webpack_require__(/*! C:\xampp\htdocs\CMS-APP\resources\sass\
 /***/ })
 
 /******/ });
+$(document).ready(function() {
+                $('.js-example-basic-multiple').select2();
+  });

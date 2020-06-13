@@ -10,7 +10,7 @@
         <div class="row">
             <img src="{{asset('storage/site-images/cover.jpg')}}" class="img-fluid profile-cover">
             <div style="margin-top: -200px">
-                @if(Auth::user()->profile->pic !== NULL)
+                @if($user->profile->pic !== NULL)
                 <img src="{{asset('storage/'.$user->profile->pic)}}" class="pull-left profilepic">
                 @else
                 <img src="{{$user->getAvatar($user->gander)}}" class="img-thumbnail pull-left" width='200px' style="border-radius: 50%;">
@@ -29,20 +29,20 @@
                         @endif
                     </div>
                     @if(
-                    $user->profile->state == NULL && 
-                    $user->profile->country == NULL &&
-                    $user->profile->bio == NULL &&
-                    $user->profile->fa == NULL &&
-                    $user->profile->tw == NULL &&
-                    $user->profile->gh == NULL &&
-                    $user->profile->wapp == NULL &&
-                    $user->profile->date_of_birth == NULL &&
-                    $user->profile->state == NULL &&
-                    $user->profile->country == NULL                
-                    )
+                        $user->profile->state == NULL && 
+                        $user->profile->country == NULL &&
+                        $user->profile->bio == NULL &&
+                        $user->profile->fa == NULL &&
+                        $user->profile->tw == NULL &&
+                        $user->profile->gh == NULL &&
+                        $user->profile->wapp == NULL &&
+                        $user->profile->date_of_birth == NULL &&
+                        $user->profile->state == NULL &&
+                        $user->profile->country == NULL                
+                        )
                         <div class="alert alert-danger m-4 text-center"><strong>No Informatio..!</strong></div>
                     @else
-                        <ul class="list-group list-group">
+                        <ul class="list-group">
                         @if($user->profile->bio !==NULL)
                         <li class="list-group-item text-center font-weight-bold">{{$user->profile->bio}}</li>
                         @endif
@@ -77,19 +77,33 @@
                         <h5 class="card-title">{{$user->profile->about}}</h5>
                     </div>
                 </div>
-                <div class="d-flex justify-content-between my-3">                    
-                    <div>
-                        <a href="#">
-                            <div class="card">
-                                <img src="https://scx2.b-cdn.net/gfx/news/hires/2018/location.jpg" class="card-img-top" alt="...">
-                                <hr>
-                                <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                            </div>                
-                        </a>                        
-                    </div>                                                      
-                </div>            
+                @if(!$user->posts > 0)
+                <div class=>
+                    <div class="card col-md-12 my-3">
+                        <div class="alert alert-danger m-3">
+                            This user haven't posts yet..!
+                        </div>
+                    </div>                    
+                </div>
+                @endif  
+                @foreach ($user->posts as $post)
+                    <div class="d-flex justify-content-between my-3">                    
+                        <div>
+                            <a href="#">
+                                <div class="card">
+                                    <div class="card-header text-center">
+                                        <h5>{{$post->title}}</h5>
+                                    </div>
+                                    <td><img src="{{asset('storage/'.$post->image)}}" class="img-fluid" alt="{{$post->title}}"></td>
+                                    <hr>
+                                    <div class="card-body">
+                                    <p>{{$post->content}}</p>
+                                    </div>
+                                </div>                
+                            </a>                        
+                        </div>                                                      
+                    </div>
+                @endforeach                                   
             <div class="text-center">
                 <div class="card bg-light">
                     <div class="card-header font-weight-bold">Join To Bolg</div>

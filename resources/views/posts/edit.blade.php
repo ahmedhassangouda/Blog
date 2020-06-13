@@ -72,7 +72,7 @@
                         </div>
                         <div class="form-group">
                             <label>Post Category: </label>
-                            <select name="tags[]" class="form-control" placeholder="Select Post Tags" multiple>
+                            <select name="tags[]" class="form-control js-example-basic-multiple" placeholder="Select Post Tags" multiple="multiple">
                                 @foreach($tags as $tag)
                                     <option value="{{$tag->id}}" @if($post->hasTag($tag->id)) selected @endif>{{$tag->name}}</option>
                                 @endforeach

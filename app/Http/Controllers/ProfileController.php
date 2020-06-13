@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    public function getprofile(User $user)
+    {
+        $posts = $user->posts();
+        return view('users.profile' , compact(['user' , 'posts']));
+    }
+
     public function edit(User $user)
     {
         $profile = $user->profile;

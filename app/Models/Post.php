@@ -10,7 +10,7 @@ class Post extends Model
     use SoftDeletes;
     
     protected $fillable = [
-        'title','description','content','image','category_id','tag_id'
+        'title','description','content','image','category_id','tag_id','user_id'
     ];
     
     public function category()
@@ -21,6 +21,11 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany('App\Models\Tag');
+    }
+
+    public function user()
+    {
+        return $this->blongsTo('App\User');
     }
 
     public function hasTag($tagid)
